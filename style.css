@@ -1,0 +1,242 @@
+/* General styles for HTML and Body */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    background-color: #f5f5e0; /* Softer background color */
+}
+
+/* Header styles */
+header {
+    background-color: #4ab8c7; /* Lightened teal */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: top 0.3s;
+    z-index: 1000;
+}
+
+header.hidden {
+    top: -130px; 
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #348494; /* Darker button color */
+    color: #fff; /* White text for better contrast */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background-color: #777; /* Hover effect */
+}
+
+/* Book Grid Layout */
+.container {
+    width: 80%;
+    margin: 120px auto 20px; /* Add margin-top to account for the fixed header */
+}
+
+.search-bar {
+    margin: 40px 0; /* Increased margin to ensure it's visible below the header */
+    text-align: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 10px;
+    width: 60%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Grid container for books */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Auto-responsive grid */
+    grid-gap: 20px; /* Space between books */
+    margin-top: 20px;
+}
+
+/* Individual book cards */
+.book {
+    background-color: #f0f0f0; /* Changed book box color */
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.book img {
+    width: 100%;
+    border-radius: 5px;
+    height: auto; /* Ensures original aspect ratio */
+}
+
+.book h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    min-height: 50px; /* Ensures a consistent height for titles */
+}
+
+.book p {
+    margin: 5px 0;
+}
+
+.book:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+    background-color: #4ab8c7; /* Lightened teal */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;	
+}
+
+
+.main-content {
+    padding-bottom: 50px; /* Adjust to ensure there's space for the footer */
+    min-height: calc(100vh - 60px); /* Adjust based on the height of the header and footer */
+    box-sizing: border-box;
+}
+
+/* Form styles */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Define a fixed width for the form */
+    margin: 50px auto; /* Center the form horizontally and add some top margin */
+    display: flex;
+    flex-direction: column; /* Ensure children are stacked vertically */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    gap: 10px; /* Evenly space elements */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #555; /* Button color */
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #777; /* Hover effect */
+}
+
+/* Contact info section */
+.contact-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.contact-info h2 {
+    margin-top: 0;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+/* Hamburger Menu (Search button) */
+#hamburger {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #555;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+    font-size: 24px;
+    transition: width 0.3s, padding 0.3s;
+}
+
+#hamburger:hover {
+    width: 120px;
+    background-color: #777;
+    padding: 10px 20px;
+}
+
+#hamburger::after {
+    content: 'Search';
+    margin: 0 7px;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    position: center; 
+    top: -2px; 
+}
+
+#hamburger:hover::after {
+    opacity: 1;
+    transform: translateY(-2px); 
+}
+
+/* Back button */
+.back-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adds space between buttons */
+    margin-top: 20px;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}

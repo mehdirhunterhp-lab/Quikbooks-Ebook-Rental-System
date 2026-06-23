@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+	<header>
+    <h1>Shopping Cart | QuikBook</h1>
+    <nav>
+      <button onclick="location.href='index.html'">Logout</button>
+      <button onclick="location.href='loginproduct.html'">Products/Services</button>
+      <button onclick="location.href='dashboard.html'">Back To Dashboard</button>
+    </nav>
+  </header><br><br><br><br><br><br><br><br><br><br>
+    
+
+    <div id="books" style="float:left; margin:40px 20px 40px 20px; display:flex; flex-direction:row;">
+        <div class="book" style="margin: 0 20px;">
+            <img class="book-image" src="Naruto.jpg" alt="Naruto" style="width: 150px; height: 250px; margin: 0 auto;">
+            <div class="book-details">
+                <h3>Naruto</h3>
+                <p>Price: RM7.00</p>
+                <button onclick="addToCart(0)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="book" style="margin: 0 20px;">
+            <img class="book-image" src="Geronimo.jpg" alt="Geronimo" style="width: 150px; height: 250px; margin: 0 auto;">
+            <div class="book-details">
+                <h3>Geronimo Stilton</h3>
+                <p>Price: RM5.00</p>
+                <button onclick="addToCart(1)">Add to Cart</button>
+            </div>
+        </div>
+		
+		<div class="book" style="margin: 0 20px;">
+            <img class="book-image" src="The39Clues.jpg" alt="The39Clues" style="width: 150px; height: 250px; margin: 0 auto;">
+            <div class="book-details">
+                <h3>The 39 Clues</h3>
+                <p>Price: RM11.00</p>
+                <button onclick="addToCart(2)">Add to Cart</button>
+            </div>
+        </div>
+		
+		<div class="book" style="margin: 0 20px;">
+            <img class="book-image" src="Bleach.jpg" alt="Bleach" style="width: 150px; height: 250px; margin: 0 auto;">
+            <div class="book-details">
+                <h3>Bleach</h3>
+                <p>Price: RM13.00</p>
+                <button onclick="addToCart(3)">Add to Cart</button>
+            </div>
+        </div>
+		
+		<div class="book" style="margin: 0 20px;">
+            <img class="book-image" src="ruri xd.jpg" alt="Ruri" style="width: 150px; height: 250px; margin: 0 auto;">
+            <div class="book-details">
+                <h3>Ruri Dragon</h3>
+                <p>Price: RM3.00</p>
+                <button onclick="addToCart(4)">Add to Cart</button>
+            </div>
+        </div>
+		
+		<div class="book" style="margin: 0 20px;">
+            <img class="book-image" src="eri.jpg" alt="GoodbyeEri" style="width: 150px; height: 250px; margin: 0 auto;">
+            <div class="book-details">
+                <h3>Goodbye Eri</h3>
+                <p>Price: RM5.00</p>
+                <button onclick="addToCart(5)">Add to Cart</button>
+            </div>
+        </div>
+		
+		<div class="book" style="margin: 0 20px;">
+            <img class="book-image" src="eatlife.jpg" alt="EatLife" style="width: 150px; height: 250px; margin: 0 auto;">
+            <div class="book-details">
+                <h3>How To Eat Life</h3>
+                <p>Price: RM7.00</p>
+                <button onclick="addToCart(6)">Add to Cart</button>
+            </div>
+        </div>
+
+        </div>
+
+    <div id="cart" class="cart" style="float: right; margin: 20px 50px 20px 20px;">
+		<button onclick="removeFromCart(0)" style="display: block; margin-top:10px;">Remove From Cart</button>
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <p id="total">Total: RM0.00</p>
+		<button onclick="location.href='payment.html'" style=" margin-top:10px;">Proceed To Payment</button>
+    </div>
+	</div>
+
+    <script>
+        const books = [
+            { name: "Naruto", price: 7.00 },
+			{ name: "Geronimo Stilton", price: 5.00 },
+			{ name: "The 39 Clues", price: 11.00 },
+			{ name: "Bleach", price: 13.00 },
+			{ name: "Ruri Dragon", price: 3.00 },
+			{ name: "Goodbye Eri", price: 5.00 },
+            { name: "How To Eat Life", price: 7.00 }
+            // Add more books here
+        ];
+
+        const cart = [];
+
+        function addToCart(index) {
+            const book = books[index];
+            cart.push(book);
+
+            updateCart();
+        }
+
+        function updateCart() {
+		const cartItemsElement = document.getElementById("cart-items");
+		cartItemsElement.innerHTML = "";
+
+		let total = 0;
+		for (let i = 0;  
+		i < cart.length; i++) {
+			const book = cart[i];
+			total += book.price;
+
+			const cartItemElement = document.createElement("li");
+			cartItemElement.textContent = `${book.name} - RM${book.price.toFixed(2)}`;
+			cartItemsElement.appendChild(cartItemElement);
+			}
+
+		const totalElement = document.getElementById("total");
+		totalElement.textContent = `Total: RM${total.toFixed(2)}`;
+		}
+		
+		function removeFromCart(index) {
+		// Remove the book from the cart array
+		cart.splice(index, 1);
+
+		// Update the cart display
+		updateCart();
+		}
+		
+    </script>
+	<footer>
+      <p>&copy; QuikBook 2024</p>
+    </footer>
+</body>
+</html>

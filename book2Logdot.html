@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geronimo Stilton Details | QuikBook</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Tag styles */
+    .tags {
+      display: flex;
+      justify-content: left;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px; /* Adjusted to give some space above */
+      margin-bottom: 10px; /* Add some space below the tags */
+    }
+
+    .book-details {
+      display: flex; /* Use flexbox to arrange items */
+      justify-content: flex-start; /* Align items to the left */
+      align-items: flex-start; /* Align items at the start */
+      margin-top: 50px; /* Add some top margin */
+    }
+
+    .book-image {
+      flex: 1; /* Allow image to take space on the left */
+      text-align: center; /* Center align the image */
+    }
+
+    .book-info {
+      flex: 2; /* Allow the info section to take more space */
+      padding-left: 20px; /* Add some padding for space */
+      margin-left: 10px; /* Adjust margin to move content left */
+    }
+
+    .tag {
+      background-color: #215964;
+      color: #fff;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .tag:hover {
+      background-color: #77b3b5;
+    }
+
+    /* Description box with smooth corners and hover effect */
+    .description-box {
+      position: relative; /* Needed for relative positioning of the rent button */
+      background-color: #f0f0e0;
+      border-radius: 15px;
+      padding: 10px; /* Reduced padding for a more compact look */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 20px;
+      width: 500px; /* Set a specific width for the box */
+      height: auto; /* Set to auto to allow for dynamic content height */
+    }
+
+    .description-box:hover {
+      transform: scale(1.05); /* Expands slightly on hover */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+    }
+
+    /* Rent button styling */
+    .rent-btn {
+      background-color: #215964;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .rent-btn:hover {
+      background-color: #77b3b5; /* Lightens on hover */
+    }
+
+    /* Inquiry button styling */
+    .inquiry-btn {
+      background-color: #215964;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .inquiry-btn:hover {
+      background-color: #77b3b5; /* Lightens on hover */
+    }
+
+    /* Centering the button at the bottom */
+   .inquiry-wrapper {
+  display: flex;
+  justify-content: left; /* Center the button horizontally */
+  margin-top: 40px; /* Space between the preview images and the button */
+  text-align: center; /* Ensure the content inside is centered */
+}
+
+    .book-specs {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    /* Preview pages styles */
+    .preview-pages {
+      display: flex;
+      justify-content: flex-start; /* Align items to the left to reduce spacing */
+      margin-top: 20px; /* Space above the preview section */
+    }
+
+    .preview-thumbnail {
+      position: relative; /* Position relative for the overlay effect */
+      overflow: hidden; /* Hide overflow */
+      width: 80px; /* Fixed width for minimized images */
+      height: 120px; /* Fixed height for minimized images */
+      border-radius: 10px; /* Rounded corners */
+      transition: transform 0.3s ease; /* Smooth zoom on hover */
+      margin-right: 10px; /* Add right margin for space between thumbnails */
+    }
+
+    .preview-thumbnail img {
+      width: 100%; /* Fill the thumbnail area */
+      height: auto; /* Maintain aspect ratio */
+      border-radius: 10px; /* Rounded corners */
+      transition: transform 0.3s ease; /* Smooth zoom on hover */
+      cursor: pointer;
+    }
+
+    .preview-thumbnail img:hover {
+      transform: scale(1.05); /* Slight zoom on hover */
+    }
+
+    /* Lightbox styles */
+    .lightbox {
+      display: none; /* Hidden by default */
+      position: fixed; /* Fixed position */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+      justify-content: center; /* Center the image */
+      align-items: center; /* Center the image */
+      z-index: 1000; /* Above other elements */
+    }
+
+    .lightbox img {
+      max-width: 90%; /* Responsive image */
+      max-height: 90%; /* Responsive image */
+    }
+
+    .lightbox:target {
+      display: flex; /* Show the lightbox when targeted */
+    }
+
+    .lightbox .close {
+      position: absolute; /* Position close button */
+      top: 20px; /* Distance from top */
+      right: 20px; /* Distance from right */
+      color: white; /* Close button color */
+      font-size: 24px; /* Close button size */
+      cursor: pointer; /* Change cursor on hover */
+    }
+
+    /* Lightbox navigation button styles */
+    .lightbox .prev, .lightbox .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      color: white;
+      font-size: 30px;
+      padding: 16px;
+      margin-top: -22px;
+      transition: 0.3s;
+      user-select: none;
+    }
+
+    .lightbox .prev {
+      left: 0;
+    }
+
+    .lightbox .next {
+      right: 0;
+    }
+
+    .lightbox .prev:hover, .lightbox .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>QuikBook</h1>
+    <nav>
+      <button onclick="location.href='logout.php'">Logout</button>
+      <button onclick="location.href='loginproduct.html'">Products/Services</button>
+      <button onclick="location.href='dashboard.php'">Back To Dashboard</button>
+    </nav>
+  </header>
+
+  <main>  
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="book-details">
+      <div class="book-image">
+        <img src="Geronimo.jpg" alt="Geronimo" width="400" height="650" style="display: block; margin-left: auto; margin-right: auto;">
+      </div>
+
+      <div class="book-info">
+        <h2>Geronimo Stilton</h2>
+
+        <!-- Tags Section Below the Title -->
+        <div class="tags">
+          <span class="tag">Adventure</span>
+          <span class="tag">Mystery</span>
+          <span class="tag">Educational</span>
+        </div>
+
+        <p>Renting Price: $5</p>
+        <button class="rent-btn" onclick="location.href='purchase.html'">Rent for $5</button>
+
+        <!-- Description Box -->
+        <div class="description-box">
+          <ul class="book-specs">
+            <li>Description: Introducing Geronimo Stilton, the world's most famous mouse reporter! Join him on thrilling adventures as he explores the farthest corners of the Mouse Island universe. With his trusty camera and notebook, Geronimo uncovers mysteries, solves puzzles, and faces danger with a dash of humor and a whole lot of cheese.</li>
+          </ul>
+        </div>
+
+        <!-- Preview Images Section -->
+		<h2>Preview Pages:</h2>
+        <div class="preview-pages">
+          <div class="preview-thumbnail" onclick="openLightbox('GeronimoSam1.png')">
+            <img src="GeronimoSam1.png" alt="Geronimo Stilton Sample Page 1">
+          </div>
+          <div class="preview-thumbnail" onclick="openLightbox('GeronimoSam2.png')">
+            <img src="GeronimoSam2.png" alt="Geronimo Stilton Sample Page 2">
+          </div>
+          <div class="preview-thumbnail" onclick="openLightbox('GeronimoSam3.png')">
+            <img src="GeronimoSam3.png" alt="Geronimo Stilton Sample Page 3">
+          </div>
+          <div class="preview-thumbnail" onclick="openLightbox('GeronimoSam4.png')">
+            <img src="GeronimoSam4.png" alt="Geronimo Stilton Sample Page 4">
+          </div>
+        </div>
+		<div class="inquiry-wrapper">
+			<button class="inquiry-btn" onclick="location.href='contactlogin.html'">Contact Us For Inquiries</button>
+		</div>
+		
+        <!-- Lightbox for Preview Images -->
+        <div id="lightbox" class="lightbox">
+          <span class="close" onclick="closeLightbox()">&times;</span>
+          <img id="lightbox-image" src="" alt="Lightbox Image">
+          <a class="prev" onclick="prevImage()">&#10094;</a>
+          <a class="next" onclick="nextImage()">&#10095;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inquiry Button Section -->
+    
+    <footer>
+      <p>&copy; QuikBook 2024</p>
+    </footer>
+
+    <script>
+      const images = ['GeronimoSam1.png', 'GeronimoSam2.png', 'GeronimoSam3.png', 'GeronimoSam4.png'];
+      let currentIndex = 0;
+
+      function openLightbox(image) {
+        currentIndex = images.indexOf(image); // Set the current index
+        document.getElementById('lightbox-image').src = image;
+        document.getElementById('lightbox').style.display = 'flex';
+      }
+
+      function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+      }
+
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length; // Cycle to the next image
+        document.getElementById('lightbox-image').src = images[currentIndex];
+      }
+
+      function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length; // Cycle to the previous image
+        document.getElementById('lightbox-image').src = images[currentIndex];
+      }
+    </script>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+	<li>&nbsp;</li>
+  </main>
+</body>
+</html>

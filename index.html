@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick And Easy EBooks For Rent</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="header">
+        <h1>Welcome To QuikBooks</h1>
+        <nav>
+            <button onclick="location.href='contact.html'">Contact Us</button>
+            <button onclick="location.href='aboutus.html'">About Us</button>
+            <button onclick="location.href='signup.php'">Signup</button>
+            <button onclick="location.href='login.php'">Login</button>
+        </nav>
+    </header>
+
+    <br><br><br>
+    <div class="container">
+        <h1 style="text-align:center; margin-top:20px;">Featured Reads</h1>
+        <div id="bookList" class="grid-container">
+            <div class="book" data-name="Book 1" data-price="7">
+                <h2>Naruto</h2>
+                <img src="Naruto.jpg" alt="Naruto">
+                <p>Rent Price: $7</p>
+            </div>
+            <div class="book" data-name="Book 2" data-price="5">
+                <h2>Geronimo Stilton</h2>
+                <img src="Geronimo.jpg" alt="Geronimo Stilton">
+                <p>Rent Price: $5</p>
+            </div>
+            <div class="book" data-name="Book 3" data-price="11">
+                <h2>The 39 Clues</h2>
+                <img src="The39Clues.jpg" alt="The 39 Clues">
+                <p>Rent Price: $11</p>
+            </div>
+            <div class="book" data-name="Book 4" data-price="13">
+                <h2>Bleach</h2>
+                <img src="Bleach.jpg" alt="Bleach">
+                <p>Rent Price: $13</p>
+            </div>
+            <div class="book" data-name="Book 5" data-price="3">
+                <h2>Ruri Dragon</h2>
+                <img src="ruri xd.jpg" alt="Ruri Dragon">
+                <p>Rent Price: $3</p>
+            </div>
+            <div class="book" data-name="Book 6" data-price="5">
+                <h2>Goodbye Eri</h2>
+                <img src="eri.jpg" alt="Goodbye Eri">
+                <p>Rent Price: $5</p>
+            </div>
+            <div class="book" data-name="Book 7" data-price="7">
+                <h2>How to Eat Life</h2>
+                <img src="eatlife.jpg" alt="How to Eat Life">
+                <p>Rent Price: $7</p>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br>
+    <h4 style="text-align:center; margin-top:20px; color:#4ab8c7;">
+        You Need To Login To View More Information About The Books
+    </h4>
+
+    <footer>
+        <p>&copy; QuikBook 2024</p>
+    </footer>
+    
+    <div id="hamburger" onclick="scrollToTop()">&#9776;</div>
+
+    <script>
+        window.onscroll = function() {
+            const header = document.getElementById("header");
+            const hamburger = document.getElementById("hamburger");
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                header.classList.add("hidden");
+                hamburger.style.display = "block";
+            } else {
+                header.classList.remove("hidden");
+                hamburger.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

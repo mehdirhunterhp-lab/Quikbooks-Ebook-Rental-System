@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment | QuikBook</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Full height of the viewport */
+    }
+    .content {
+      flex: 1; /* Pushes footer to bottom */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .payment-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Centers vertically */
+      align-items: center; /* Centers horizontally */
+      height: 80vh; /* Takes up 80% of the screen height */
+    }
+    .qr-image {
+      width: 300px;
+      height: auto;
+    }
+    .pay-button {
+      background-color: #1E869C;
+      color: white;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .pay-button:hover {
+      background-color: #166a7a;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Payment | QuikBook</h1>
+    <nav>
+      <button onclick="location.href='purchase.html'">Shopping Cart</button>
+    </nav>
+  </header>
+
+  <div class="content">
+    <div class="payment-container">
+      <h3>Scan to Pay</h3>
+      <img src="paymentQr.jpg" alt="Payment QR Code" class="qr-image">
+      <button class="pay-button">Pay</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; QuikBook 2024</p>
+  </footer>
+
+</body>
+</html>

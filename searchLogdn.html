@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Books | QuikBook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+    header {
+      background-color: #215964;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav button {
+      background-color: #fff;
+      border: 2px solid #215964;
+      padding: 10px;
+      margin: 5px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav button:hover {
+      background-color: #77b3b5;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    button[type="submit"] {
+      background-color: #215964;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      align-self: flex-start;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #77b3b5;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      background-color: white;
+    }
+
+    .dropdown-options {
+      position: absolute;
+      z-index: 1;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      display: none;
+      max-height: 150px;
+      overflow-y: auto;
+      width: 100%;
+    }
+
+    .dropdown-options label {
+      display: block;
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .dropdown-options label:hover {
+      background-color: #f0f0f0;
+    }
+
+    footer {
+	
+	  position: fixed;
+      text-align: center;
+	  left: 0;
+	  bottom: 0;
+	  width: 100%;
+      padding: 20px;
+      background-color: #215964;
+      color: white;
+    }
+	
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Search Books</h1>
+    <nav>
+      <button onclick="location.href='dashboard.html'">Back to Dashboard</button>
+      <button onclick="location.href='logout.php'">Logout</button>
+    </nav>
+  </header>
+  <br><br>
+
+  <div class="container">
+    <div class="search-container">
+      <form id="searchForm">
+        <div class="form-group">
+          <label for="searchName">Book Name:</label>
+          <input type="text" name="name" id="searchName" placeholder="Enter book name">
+        </div>
+        <div class="form-group">
+          <label for="searchPrice">Max Price:</label>
+          <input type="number" name="price" id="searchPrice" placeholder="Enter max price">
+        </div>
+        <div class="form-group dropdown">
+          <label for="searchTags">Tags:</label>
+          <div class="dropdown-select" id="dropdownSelect" onclick="toggleDropdown()">
+            Select Tags
+          </div>
+          <div class="dropdown-options" id="dropdownOptions">
+            <label><input type="checkbox" value="Manga" onchange="updateSelectedTags()"> Manga</label>
+            <label><input type="checkbox" value="Fantasy" onchange="updateSelectedTags()"> Fantasy</label>
+			<label><input type="checkbox" value="Educational" onchange="updateSelectedTags()"> Educational</label>
+            <label><input type="checkbox" value="Action" onchange="updateSelectedTags()"> Action</label>
+			<label><input type="checkbox" value="Mystery" onchange="updateSelectedTags()"> Mystery</label>
+            <label><input type="checkbox" value="Slice of life" onchange="updateSelectedTags()"> Slice of Life</label>
+            <label><input type="checkbox" value="Adventure" onchange="updateSelectedTags()"> Adventure</label>
+            <label><input type="checkbox" value="Drama" onchange="updateSelectedTags()"> Drama</label>
+			<label><input type="checkbox" value="Psychological" onchange="updateSelectedTags()"> Psychological</label>
+          </div>
+        </div>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+<br>
+<br>
+<br>
+<Br>
+  <footer>
+    <p>&copy; 2024 QuikBook</p>
+  </footer>
+
+  <script>
+    const books = [
+      { name: 'Naruto', price: 7, tags: ['Manga', 'Fantasy', 'Action'] },
+      { name: 'Geronimo Stilton', price: 5, tags: ['Adventure', 'Mystery','Educational'] },
+      { name: 'The 39 Clues', price: 11, tags: ['Adventure', 'Mystery','Action'] },
+      { name: 'Bleach', price: 13, tags: ['Manga', 'Fantasy','Action'] },
+      { name: 'Ruri Dragon', price: 3, tags: ['Manga', 'Fantasy', 'Slice of Life'] },
+      { name: 'Goodbye Eri', price: 5, tags: ['Manga', 'Drama', 'Psychological'] },
+      { name: 'How to Eat Life', price: 7, tags: ['Manga', 'Mystery', 'Action'] },
+    ];
+
+    const searchForm = document.getElementById('searchForm');
+    const dropdownSelect = document.getElementById('dropdownSelect');
+    const dropdownOptions = document.getElementById('dropdownOptions');
+
+    searchForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nameQuery = document.getElementById('searchName').value.toLowerCase();
+      const priceQuery = parseFloat(document.getElementById('searchPrice').value);
+      const selectedTags = Array.from(dropdownOptions.querySelectorAll('input:checked')).map(checkbox => checkbox.value.toLowerCase());
+
+      const results = books.filter(book => {
+        const matchesName = !nameQuery || book.name.toLowerCase().includes(nameQuery);
+        const matchesPrice = !priceQuery || book.price <= priceQuery;
+        const matchesTags = selectedTags.length === 0 || selectedTags.every(tag => book.tags.map(t => t.toLowerCase()).includes(tag));
+        return matchesName && matchesPrice && matchesTags;
+      });
+
+      displayResults(results);
+    });
+
+    function toggleDropdown() {
+      const isVisible = dropdownOptions.style.display === 'block';
+      dropdownOptions.style.display = isVisible ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function(event) {
+      if (!dropdownSelect.contains(event.target) && !dropdownOptions.contains(event.target)) {
+        dropdownOptions.style.display = 'none';
+      }
+    });
+
+    function updateSelectedTags() {
+      const selectedTags = Array.from(dropdownOptions.querySelectorAll('input:checked')).map(checkbox => checkbox.value);
+      dropdownSelect.textContent = selectedTags.length > 0 ? selectedTags.join(', ') : 'Select Tags';
+    }
+
+    function displayResults(results) {
+      let resultHtml = '<h2>Search Results</h2>';
+      if (results.length > 0) {
+        results.forEach(book => {
+          resultHtml += `
+            <div class="book-result">
+              <h3>${book.name}</h3>
+              <p>Price: $${book.price}</p>
+              <p>Tags: ${book.tags.join(', ')}</p>
+            </div>
+            <hr>
+          `;
+        });
+      } else {
+        resultHtml += '<p>No books found matching the search criteria.</p>';
+      }
+      document.querySelector('.container').innerHTML = resultHtml;
+    }
+  </script>
+</body>
+</html>

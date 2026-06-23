@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Cars - Cars4life</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="header">
+        <h1>Search</h1>
+        <nav>
+            <button onclick="location.href='index.html'">Return to Home</button> <!-- Add a Back button -->
+        </nav>
+    </header>
+	<br>
+	<br>
+	<br>
+    <div class="container">
+        <div class="search-container">
+            <form id="searchForm" action="results.html" method="get">
+                <div class="form-group">
+                    <label for="searchName">Book Name:</label>
+                    <input type="text" name="name" id="searchName">
+                </div>
+                <div class="form-group">
+                    <label for="searchPrice">Max Price:</label>
+                    <input type="number" name="price" id="searchPrice">
+                </div>
+ 
+      
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Cars Galore</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
